@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: API-GATEWAY
+
+
+
+  cloud:
+    gateway:
+      routes:
+        - id: RATING
+          uri: lb://RATING
+          predicates:
+            - Path=/rating/**
+
+
+        - id: PRODUCT
+          uri: lb://PRODUCT
+          predicates:
+            - Path=/product/**
+
+
+
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+server:
+  port: 8088
+
+
+okta:
+  oauth2:
+    issuer: https://dev-67011664.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oaff6uzf0QswOmfI5d7
+    client-secret: TjlIeq7jHnQRJ9Wybv0iZTESZqMKRSKXbUsnpqvrLQVZfHbtGeJ1wJNmbcsHOZo_
+    scopes: openid, profile, email, offline_access
+
